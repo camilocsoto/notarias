@@ -44,7 +44,7 @@ class Ticket(models.Model):
         User,
         on_delete=models.CASCADE,
         limit_choices_to={'rol': 4},
-        related_name='tickets_como_cliente'       # ← related_name distinto
+        related_name='tickets_como_cliente'
     )
     operador = models.ForeignKey(
         User,
@@ -52,12 +52,12 @@ class Ticket(models.Model):
         null=True,
         blank=True,
         limit_choices_to={'rol': 3},
-        related_name='tickets_como_operador'      # ← related_name distinto
+        related_name='tickets_como_operador'
     )
     notaria = models.ForeignKey(
         'app.Notaria',
         on_delete=models.CASCADE,
-        related_name='tickets'                   # opcional: para acceder desde Notaria
+        related_name='tickets'
     )
 
     class Meta:

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Usuario: {{ usuario }} — Notaría: {{ notaria }}</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Turno</th>
+        <th>Servicio</th>
+        <th>Estado</th>
+        <th>Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for ticket in tickets %}
+        <tr>
+          <td>{{ ticket.numero_turno }}</td>
+          <td>{{ ticket.tipo_servicio.nombre }}</td>
+          <td>{{ ticket.get_estado_display }}</td>
+          <td>
+            <form method="post" action="{% url 'app:ticket_attend' ticket.pk %}">
+              {% csrf_token %}
+              <button type="submit">Atender</button>
+            </form>
+          </td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="4">No hay turnos pendientes.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

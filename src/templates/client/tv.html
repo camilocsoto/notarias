@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Notaría: {{ notaria }}</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Turno</th>
+        <th>Servicio</th>
+        <th>Estado</th>
+        <th>Operario</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for ticket in tickets %}
+        <tr>
+          <td>{{ ticket.numero_turno }}</td>
+          <td>{{ ticket.tipo_servicio.nombre }}</td>
+          <td>{{ ticket.get_estado_display }}</td>
+          <td>
+            {% if ticket.operador %}
+              {{ ticket.operador.get_full_name|default:ticket.operador.username }}
+            {% else %}
+              sin asignar
+            {% endif %}
+          </td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="4">No hay turnos activos.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  {# Opcional: script para recargar la tabla automáticamente cada 10 segundos #}
+  <script>
+    setInterval(function() {
+      fetch("{% url 'app:ticket_tv' %}?ajax=1")
+        .then(r => r.text())
+        .then(html => {
+          document.querySelector('tbody').innerHTML =
+            new DOMParser().parseFromString(html, 'text/html')
+                           .querySelector('tbody').innerHTML;
+        });
+    }, 10000);
+  </script>
+{% endblock %}

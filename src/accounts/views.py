@@ -8,7 +8,7 @@ from typing import cast
 class SignUpView(CreateView):
     form_class = UserForm
     template_name = 'registration/signup.html'
-    success_url = reverse_lazy('login')
+    success_url = reverse_lazy('accounts:login')
 
 class CustomLoginView(LoginView):
     authentication_form = AuthForm
@@ -19,12 +19,12 @@ class CustomLoginView(LoginView):
         if user.rol == 1:
             return reverse_lazy('app:select_tipo')
         elif user.rol == 2:
-            return reverse_lazy('app:select_tipo')
+            return reverse_lazy('app:ticket_list')
         elif user.rol == 3:
-            return reverse_lazy('app:select_tipo')
+            return reverse_lazy('app:ticket_list')
         elif user.rol == 4:
             return reverse_lazy('app:select_tipo')        
         return super().get_success_url()
     
 class CustomLogoutView(LogoutView):
-    next_page = reverse_lazy('login')
+    next_page = reverse_lazy('accounts:login')

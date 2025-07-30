@@ -1,0 +1,21 @@
+{# templates/ticket/partials/tv_table_body.html #}
+<tbody>
+  {% for ticket in tickets %}
+    <tr>
+      <td>{{ ticket.numero_turno }}</td>
+      <td>{{ ticket.tipo_servicio.nombre }}</td>
+      <td>{{ ticket.get_estado_display }}</td>
+      <td>
+        {% if ticket.operador %}
+          {{ ticket.operador.get_full_name|default:ticket.operador.username }}
+        {% else %}
+          sin asignar
+        {% endif %}
+      </td>
+    </tr>
+  {% empty %}
+    <tr>
+      <td colspan="4">No hay turnos activos.</td>
+    </tr>
+  {% endfor %}
+</tbody>

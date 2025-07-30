@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Editar Ticket {{ object.numero_turno }}</h2>
+  <p><strong>Creado:</strong> {{ object.fecha_creacion }}</p>
+  <p><strong>Servicio:</strong> {{ object.tipo_servicio.nombre }}</p>
+
+  <form method="post">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    <div>
+      {{ form.comments.label_tag }}<br>
+      {{ form.comments }}
+      {{ form.comments.errors }}
+    </div>
+    <div>
+      {{ form.estado.label_tag }}<br>
+      {{ form.estado }}
+      {{ form.estado.errors }}
+    </div>
+    <button type="submit">Guardar</button>
+  </form>
+{% endblock %}
