@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <title>Iniciar sesión – Digiturnos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style> body { font-family: Calibri, sans-serif !important; } </style>
+</head>
+<body class="h-full bg-gradient-to-br from-indigo-100 via-purple-50 to-pink-100 flex items-center justify-center">
+  <div class="w-full max-w-sm">
+    <div class="bg-white rounded-2xl shadow-2xl p-8 space-y-6">
+      <h1 class="text-3xl font-bold text-center text-gray-800">Bienvenido</h1>
+
+      <form method="post" action="{% url 'accounts:login' %}" class="space-y-4">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        <!-- Username (email) -->
+        <div>
+          {{ form.username.label_tag }}
+          {{ form.username }}
+        </div>
+
+        <!-- Password -->
+        <div>
+          {{ form.password.label_tag }}
+          {{ form.password }}
+        </div>
+
+        <button type="submit"
+                class="w-full bg-indigo-600 text-white py-2.5 rounded-lg hover:bg-indigo-700 transition">
+          Iniciar sesión
+        </button>
+      </form>
+
+      <p class="text-center text-sm text-gray-600">
+        ¿No tienes cuenta?
+        <a href="{% url 'accounts:register' %}" class="font-medium text-indigo-600 hover:text-indigo-500">Regístrate</a>
+      </p>
+    </div>
+  </div>
+</body>
+</html>

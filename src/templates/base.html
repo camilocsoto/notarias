@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Digiturnos{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    {% block extra_head %}{% endblock %}
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased">
+    <main class="min-h-screen flex flex-col">
+        {% block content %}
+        <!-- Aquí irá el contenido de cada página -->
+        {% endblock %}
+    </main>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

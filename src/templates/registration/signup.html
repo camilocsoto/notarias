@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <title>Registro – Digiturnos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style> body { font-family: Calibri, sans-serif !important; } </style>
+</head>
+<body class="h-full bg-gradient-to-br from-indigo-100 via-purple-50 to-pink-100 flex items-center justify-center py-12 px-4">
+  <div class="w-full max-w-md">
+    <div class="bg-white rounded-2xl shadow-2xl p-8 space-y-4">
+      <h1 class="text-3xl font-bold text-center text-gray-800">Crear cuenta</h1>
+
+      <form method="post" action="{% url 'accounts:register' %}" class="space-y-4">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        {{ form.first_name.label_tag }}
+        {{ form.first_name }}
+
+        {{ form.last_name.label_tag }}
+        {{ form.last_name }}
+
+        {{ form.email.label_tag }}
+        {{ form.email }}
+
+        {{ form.rol.label_tag }}
+        {{ form.rol }}
+
+        {{ form.notaria.label_tag }}
+        {{ form.notaria }}
+
+        {{ form.password1.label_tag }}
+        {{ form.password1 }}
+
+        {{ form.password2.label_tag }}
+        {{ form.password2 }}
+
+        <button type="submit"
+                class="w-full bg-indigo-600 text-white py-2.5 rounded-lg hover:bg-indigo-700 transition">
+          Registrarse
+        </button>
+      </form>
+
+      <p class="text-center text-sm text-gray-600">
+        ¿Ya tienes cuenta?
+        <a href="{% url 'accounts:login' %}" class="font-medium text-indigo-600 hover:text-indigo-500">Inicia sesión</a>
+      </p>
+    </div>
+  </div>
+</body>
+</html>

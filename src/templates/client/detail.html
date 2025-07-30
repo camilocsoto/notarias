@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Su turno</h1>
+  <p><strong>Número:</strong> {{ ticket.numero_turno }}</p>
+  <p><strong>Tipo:</strong> {{ ticket.tipo_servicio.nombre }}</p>
+  <p><strong>Fecha de creación:</strong> {{ ticket.fecha_creacion }}</p>
+  <p><strong>Estado:</strong> {{ ticket.get_estado_display }}</p>
+  <!-- aquí más info o botones si necesitas -->
+{% endblock %}
