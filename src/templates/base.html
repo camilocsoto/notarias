@@ -1,20 +1,27 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>{% block title %}Digiturnos{% endblock %}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Tailwind CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    {% block extra_head %}{% endblock %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Digiturno notarial{% endblock %}</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  {% block extra_head %}{% endblock %}
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans antialiased">
-    <main class="min-h-screen flex flex-col">
-        {% block content %}
-        <!-- Aquí irá el contenido de cada página -->
-        {% endblock %}
-    </main>
+<body class="flex flex-col min-h-screen bg-gray-50 text-gray-800">
 
-    {% block extra_js %}{% endblock %}
+  {% block header %}
+  <!-- Header estilo HyperUI -->
+    {% include 'includes/header.html' %}
+  {% endblock %}
+
+  <main class="flex-grow">
+    {% block content %}{% endblock %}
+  </main>
+
+  {% block footer %}
+  <!-- Footer estilo HyperUI -->
+    {% include 'includes/footer.html' %}
+  {% endblock %}
+
 </body>
 </html>

@@ -1,15 +1,23 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Seleccione el tipo de turno</h1>
-  <div>
+<div class="max-w-3xl mx-auto py-12 px-4 text-center">
+  
+  <h1 class="text-3xl font-bold mb-8 text-gray-800">
+    Seleccione el tipo de turno
+  </h1>
+
+  <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
     {% for tipo in tipos %}
-      <form method="post" action="{% url 'app:create_ticket' %}" style="display:inline;">
+      <form method="post" action="{% url 'app:create_ticket' %}">
         {% csrf_token %}
         <input type="hidden" name="tipo_id" value="{{ tipo.id }}">
-        <button type="submit">
+        <button type="submit"
+          class="inline-block w-full rounded-sm border border-teal-500 bg-teal-500 px-6 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-teal-500 transition-colors duration-300">
           {{ forloop.counter }} | {{ tipo.nombre }}
         </button>
       </form>
     {% endfor %}
   </div>
+
+</div>
 {% endblock %}
